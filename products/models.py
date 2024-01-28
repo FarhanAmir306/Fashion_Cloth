@@ -32,8 +32,10 @@ class Product(models.Model):
         return self.name
     
 from django.core.validators import MinValueValidator
+
+
 class BestSeller(models.Model):
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity_sold = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -42,6 +44,7 @@ class BestSeller(models.Model):
 
     class Meta:
         ordering = ['-quantity_sold']
+
 
 class Accept_Product(models.Model):
     name=models.ForeignKey(User,on_delete=models.CASCADE)

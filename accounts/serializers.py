@@ -1,49 +1,33 @@
+
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from . import models
+from rest_framework.authtoken.models import Token
 
-class RegistrationSerializer(serializers.ModelSerializer):
-    confirm_password = serializers.CharField(write_only=True, required=True)
+class UserSerializer(serializers.ModelSerializer):
+    confirm_password = serializers.CharField(write_only=True)
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
 
     class Meta:
         model = User
-        fields = ['id','username', 'first_name', 'last_name', 'email', 'password', 'confirm_password']
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password', 'confirm_password')
 
     def validate(self, data):
-        password = data.get('password')
-        confirm_password = data.get('confirm_password')
-
-        if password != confirm_password:
-            raise serializers.ValidationError({'error': "Passwords don't match"})
-
+        # Validate if passwords match
+        if data.get('password') != data.get('confirm_password'):
+            raise serializers.ValidationError("Passwords do not match.")
         return data
 
     def create(self, validated_data):
-        validated_data.pop('confirm_password', None)  # Remove 'confirm_password' from validated_data
-        user = User.objects.create(
-            username=validated_data['username'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            email=validated_data['email'],
-            is_active=False,
-        )
-        user.set_password(validated_data['password'])
-        user.save()
+        # Remove confirm_password from the validated data
+        validated_data.pop('confirm_password', None)
+
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
         return user
 
+    
 
-
-
-
-
-
-from rest_framework import serializers
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-
-
-class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField(required = True)
-    password = serializers.CharField(required = True)
-
-
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()

@@ -29,10 +29,10 @@ SECRET_KEY =env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','fashion-cloth.onrender.com','http://127.0.0.1:5500']
-
-CSRF_TRUSTED_ORIGINS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','http://127.0.0.1:5500']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = ['https://fashion-cloth.onrender.com']
+
 # Application definition
 
 INSTALLED_APPS = [

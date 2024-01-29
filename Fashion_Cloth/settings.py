@@ -29,7 +29,7 @@ SECRET_KEY =env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1']
+ALLOWED_HOSTS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','fashion-cloth.onrender.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1']
 

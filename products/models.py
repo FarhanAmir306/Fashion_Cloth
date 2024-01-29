@@ -25,6 +25,7 @@ class Product(models.Model):
     rating = models.CharField(max_length=50, choices=RATING_CHOICES)
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
     description = models.TextField(blank=True)
+    image=models.ImageField(upload_to='products/media/',null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

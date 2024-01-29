@@ -57,3 +57,20 @@ class BuyProduct(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+
+class ProductDetailsAPIView(APIView):
+    def get(self, request, pk):
+        try:
+            # Retrieve the product by primary key (pk)
+            product = Product.objects.get(pk=pk)
+            
+            # Serialize the product data
+            serializer = ProductSerializer(product)
+            
+            # Return the serialized data as a response
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        except Product.DoesNotExist:
+            # If the product with the given pk does not exist, return a 404 response
+            return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)

@@ -29,9 +29,9 @@ SECRET_KEY =env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','fashion-cloth.onrender.com']
+ALLOWED_HOSTS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','fashion-cloth.onrender.com','http://localhost:5500']
 
-CSRF_TRUSTED_ORIGINS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','fashion-cloth.onrender.com','http://localhost:5500']
 
 # Application definition
 
@@ -68,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+
 ]
 
 ROOT_URLCONF = 'Fashion_Cloth.urls'

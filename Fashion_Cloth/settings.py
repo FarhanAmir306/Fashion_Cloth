@@ -32,7 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','fashion-cloth.onrender.com','http://127.0.0.1:5500']
 
 CSRF_TRUSTED_ORIGINS = ['https://fashion-cloth.onrender.com','https://*.127.0.0.1','http://127.0.0.1:5500']
-
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [

@@ -34,6 +34,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = ['https://fashion-cloth.onrender.com']
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
+    'http://127.0.0.1:5500',
 )
 
 # Application definition

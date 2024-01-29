@@ -23,6 +23,7 @@ class LoginView(APIView):
     serializer_class = LoginSerializer
 
     def post(self, request):
+        print("request",request.data)
         serializer = LoginSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
@@ -30,18 +31,20 @@ class LoginView(APIView):
             password = serializer.validated_data['password']
             print(username)
             print(password)
-            user = authenticate(username=username, password=password)
+            user = authenticate(request,username=username, password=password)
             print(user)
             
             if user:
                 login(request, user)
                 return Response({'message': 'Login successful'})
-        return Response({'error': 'Invalid credentials'})
+            else:
+                return Response({'error': 'Invalid credentials'},status=status.HTTP_401_UNAUTHORIZED)
+            
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LogoutView(APIView):
-    permission_classes = (IsAuthenticated,)
-    def post(self, request):
-        request.auth.delete()
+    
+    def get(self, request):
         logout(request)
         return Response({'message': 'Successfully logged out'})

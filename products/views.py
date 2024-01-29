@@ -4,6 +4,8 @@ from .models import Category,Product,BestSeller,Accept_Product
 from .serializers import CategorySerializer,ProductSerializer,BestSellerSerilizer,AcceptProductSerializer
 # Create your views here.
 
+
+
 class CategoryView(viewsets.ModelViewSet):
     queryset=Category.objects.all()
     serializer_class=CategorySerializer
@@ -20,7 +22,38 @@ class BestSellerView(viewsets.ModelViewSet):
 
 class AcceptProductView(viewsets.ModelViewSet):
     queryset=Accept_Product.objects.all()
-    serializer_class=AcceptProductSerializer
+    serializer_class=AcceptProductSerializer 
 
+
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
+
+
+class BuyProduct(APIView):
+    
+    def get(self, request, product_id):
+        
+        product = get_object_or_404(Product, pk=product_id)
+        user = request.user
+        print(user)
+        # Assuming you have authentication set up
+
+        # Create an entry in Accept_Product for the purchased product
+        serializer = AcceptProductSerializer(data={'user': user.id, 'products': product.id}) 
+        if serializer.is_valid():
+            serializer.save()
+
+            # Update product quantity (subtract 1)
+            product.quantity -= 1
+            product.save()
+
+            return Response({'message': 'Purchase successful'}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

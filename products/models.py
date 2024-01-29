@@ -16,11 +16,11 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField(default=0)
     RATING_CHOICES = [
-        ('⭐', '⭐'),
-        ('⭐⭐', '⭐⭐'),
-        ('⭐⭐⭐', '⭐⭐⭐'),
-        ('⭐⭐⭐⭐', '⭐⭐⭐⭐'),
-        ('⭐⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'),
+        ('1', '⭐'),
+        ('2', '⭐⭐'),
+        ('3', '⭐⭐⭐'),
+        ('4', '⭐⭐⭐⭐'),
+        ('5', '⭐⭐⭐⭐⭐'),
     ]
     rating = models.CharField(max_length=50, choices=RATING_CHOICES)
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
@@ -47,5 +47,5 @@ class BestSeller(models.Model):
 
 
 class Accept_Product(models.Model):
-    name=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     products=models.ForeignKey(Product, on_delete=models.CASCADE)

@@ -21,9 +21,10 @@ class BestSellerSerilizer(serializers.ModelSerializer):
 
 class AcceptProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Accept_Product
-        fields='__all__'
+        model = Accept_Product
+        fields = ['user', 'products']
         
+
 
 
         

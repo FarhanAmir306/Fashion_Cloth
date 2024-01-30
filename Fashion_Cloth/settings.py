@@ -42,7 +42,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
+    "http://localhost:8080",
     'http://127.0.0.1:5500',
     'https://fashion-cloth.onrender.com',
 ]
@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework',
     'rest_framework.authtoken',
-    'django-filters'
+  
     'accounts',
     'products',
 ]

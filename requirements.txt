@@ -24,4 +24,4 @@ sqlparse
 typing_extensions
 tzdata
 Werkzeug
-django-filters
+django-filter

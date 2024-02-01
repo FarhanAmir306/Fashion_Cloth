@@ -138,6 +138,17 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Fashion',
+#         'USER': 'fashion_y2rm_user',
+#         'PASSWORD': 'ipkfNMneoK36HjyMvyFhIZoUBlsg6ykQ',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

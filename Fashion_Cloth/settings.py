@@ -117,25 +117,25 @@ WSGI_APPLICATION = 'Fashion_Cloth.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# import dj_database_url
-
-# # Database
-# # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         # Feel free to alter this value to suit your needs.
-#         default='postgresql://postgres:postgres@localhost:5432/mysite',
-#         conn_max_age=600
-#     )
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+import dj_database_url
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://fashion_y2rm_user:ipkfNMneoK36HjyMvyFhIZoUBlsg6ykQ@dpg-cmthoegl6cac73avhfk0-a.oregon-postgres.render.com/fashion_y2rm',
+        conn_max_age=600
+    )
+}
 
 
 # Password validation
